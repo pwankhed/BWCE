@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sca:composite xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:XMLSchema="http://www.w3.org/2001/XMLSchema" xmlns:compositeext="http://schemas.tibco.com/amx/3.0/compositeext" xmlns:sca="http://www.osoa.org/xmlns/sca/1.0" xmi:id="_IuYXALsTEeyubdn0eOKnrg" targetNamespace="http://tns.tibco.com/bw/composite/CommonXMLRouter" name="CommonXMLRouter" compositeext:version="1.0.0" compositeext:formatVersion="2">
+  <sca:property xmi:id="_IxHh8LsTEeyubdn0eOKnrg" name="BW.APPNODE.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_IxKlQLsTEeyubdn0eOKnrg" name="BW.DEPLOYMENTUNIT.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_IxLzYLsTEeyubdn0eOKnrg" name="BW.HOST.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_IxMacLsTEeyubdn0eOKnrg" name="BW.DEPLOYMENTUNIT.VERSION" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_IxNokLsTEeyubdn0eOKnrg" name="BW.MODULE.VERSION" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_IxOPoLsTEeyubdn0eOKnrg" name="BW.CLOUD.PORT" type="XMLSchema:int" scalable="true"/>
+  <sca:property xmi:id="_IxQE0LsTEeyubdn0eOKnrg" name="BW.MODULE.NAME" type="XMLSchema:string" scalable="true"/>
+</sca:composite>
