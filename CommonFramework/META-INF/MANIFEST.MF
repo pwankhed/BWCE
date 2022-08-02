@@ -1,0 +1,88 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: CommonFramework Module
+Bundle-SymbolicName: CommonFramework
+Bundle-Version: 1.0.0.qualifier
+Bundle-ClassPath: .,
+ .annoxfiles/,
+ external:/home/nlou/.m2/repository/org/apache/tika/tika-core/2.2.1/tika-core-2.2.1.jar,
+ external:/home/nlou/.m2/repository/org/apache/tika/tika-core/2.2.1/tika-core-2.2.1.jar
+Bundle-Vendor: Ceva Logistics
+Export-Package: com.ceva.eai.bwce.generic.cfw.http,
+ com.ceva.eai.bwce.generic.cfw.model,
+ com.ceva.eai.bwce.generic.cfw.utils.encoding,
+ com.ceva.eai.bwce.generic.cfw.utils.executor,
+ com.ceva.eai.bwce.generic.cfw.utils.io,
+ com.ceva.eai.bwce.generic.cfw.utils.xmlio,
+ com.ceva.eai.bwce.generic.cfw.utils.xmlio.in,
+ com.ceva.eai.bwce.generic.cfw.utils.xmlio.out
+Provide-Capability: com.tibco.bw.module; name="CommonFramework"; version:Version="1.0.0",
+ com.tibco.bw.schemas; ns="urn:ceva:eai:bwce:cfw:commontypes",
+ com.tibco.bw.schemas; ns="urn:ceva:eai:bwce:cfw:doc:event",
+ com.tibco.bw.schemas; ns="urn:ceva:eai:bwce:cfw:doc:exceptionhandler",
+ com.tibco.bw.schemas; ns="urn:ceva:eai:bwce:cfw:doc:exceptionhandlerconfig",
+ com.tibco.bw.schemas; ns="urn:ceva:eai:bwce:cfw:doc:extractfromxml",
+ com.tibco.bw.schemas; ns="urn:ceva:eai:bwce:cfw:doc:faultdetails",
+ com.tibco.bw.schemas; ns="urn:ceva:eai:bwce:cfw:doc:internal:trace:senddocument",
+ com.tibco.bw.schemas; ns="urn:ceva:eai:bwce:cfw:doc:removedocfromstore",
+ com.tibco.bw.schemas; ns="urn:ceva:eai:bwce:cfw:doc:renderdocument",
+ com.tibco.bw.schemas; ns="urn:ceva:eai:bwce:cfw:doc:senddocument",
+ com.tibco.bw.schemas; ns="urn:ceva:eai:bwce:cfw:doc:submitdocument",
+ com.tibco.bw.schemas; ns="urn:ceva:eai:bwce:cfw:doc:submiterror",
+ com.tibco.bw.schemas; ns="urn:ceva:eai:bwce:cfw:doc:submitlog",
+ com.tibco.bw.schemas; ns="urn:ceva:eai:bwce:cfw:doc:updatedocprops",
+ com.tibco.bw.schemas; ns="www.tibco.com/plugin/java/xmlSchema/com.ceva.eai.bwce.generic.cfw.http.HttpClientRequest",
+ com.tibco.bw.schemas; ns="www.tibco.com/plugin/java/xmlSchema/com.ceva.eai.bwce.generic.cfw.model.Document",
+ com.tibco.bw.schemas; ns="www.tibco.com/plugin/java/xmlSchema/com.ceva.eai.bwce.generic.cfw.model.DocumentProperties",
+ com.tibco.bw.schemas; ns="www.tibco.com/plugin/java/xmlSchema/com.ceva.eai.bwce.generic.cfw.model.DocumentProperty",
+ com.tibco.bw.processes; name="CommonCore.Mediation.Internal.Trace",
+ com.tibco.bw.processes; name="CommonCore.Mediation.Utilities.Send",
+ com.tibco.bw.processes; name="CommonCore.Test",
+ com.tibco.bw.processes; name="CommonCore.Mediation.Render",
+ com.tibco.bw.processes; name="CommonCore.Mediation.Utilities.Log",
+ com.tibco.bw.processes; name="CommonCore.Mediation.Utilities.Documents",
+ com.tibco.bw.processes; name="CommonCore.Mediation.Utilities.Extract",
+ com.tibco.bw.processes; name="CommonException.Mediation.Utilities.ExceptionHandler"
+Import-Package: com.tibco.bw.palette.java.model.helper;version="6.3.2100",
+ com.tibco.bw.palette.java.model.java;version="6.3.2100",
+ com.tibco.bw.palette.java.model.java.impl;version="6.3.2100",
+ com.tibco.bw.palette.java.model.java.util;version="6.3.2100",
+ com.tibco.bw.palette.java.runtime;version="6.4.2500",
+ com.tibco.bw.palette.java.runtime.util,
+ com.tibco.bw.palette.shared.java;version="6.2.1300",
+ com.tibco.bw.runtime;version="6.3.1601",
+ com.tibco.bw.sharedresource.java.model.javasharedresource;version="6.3.2000",
+ com.tibco.bw.sharedresource.java.model.javasharedresource.impl;version="6.3.2000",
+ com.tibco.bw.sharedresource.java.model.javasharedresource.util;version="6.3.2000",
+ com.tibco.bw.sharedresource.java.runtime;version="6.5.1600",
+ com.tibco.pvm.im.shared.serializers.java;version="4.2.800",
+ com.tibco.xml.conversion.javaschema;version="5.60.300",
+ org.apache.commons.codec.binary;version="1.7.0",
+ org.apache.commons.io;version="2.0.0",
+ org.apache.commons.io.input;version="2.0.1",
+ org.apache.commons.io.output;version="2.0.0",
+ org.eclipse.jetty.client;version="9.4.300",
+ org.eclipse.jetty.client.api;version="9.4.300",
+ org.eclipse.jetty.client.http;version="9.4.300",
+ org.eclipse.jetty.client.util;version="9.4.300",
+ org.eclipse.jetty.http;version="9.4.300",
+ org.eclipse.jetty.util.component;version="9.4.300",
+ org.eclipse.jetty.util.ssl;version="9.4.300",
+ org.eclipse.jetty.util.thread;version="9.4.300",
+ org.genxdm;version="1.7.0",
+ org.slf4j;version="1.8.600"
+TIBCO-BW-JobSharedVariables: META-INF/module.jsv
+TIBCO-BW-ConfigProfile: META-INF/default.substvar
+TIBCO-BW-ModuleSharedVariables: META-INF/module.msv
+TIBCO-BW-Edition: bwcf
+Automatic-Module-Name: CommonFramework
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Require-Capability: com.tibco.bw.model; filter:="(name=bwext)",
+ com.tibco.bw.palette; filter:="(name=bw.generalactivities)",
+ com.tibco.bw.palette; filter:="(name=bw.restjson)",
+ com.tibco.bw.palette; filter:="(name=bw.java)",
+ com.tibco.bw.palette; filter:="(name=bw.xml)",
+ com.tibco.bw.palette; filter:="(name=bw.http)",
+ com.tibco.bw.sharedresource.model; filter:="(name=bw.java)"
+TIBCO-BW-Version: 2.7.1 V73 2022-02-11
+TIBCO-BW-SharedModule: META-INF/module.bwm

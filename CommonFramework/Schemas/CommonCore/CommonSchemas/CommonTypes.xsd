@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema elementFormDefault="unqualified"
+	 attributeFormDefault="unqualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:ceva:eai:bwce:cfw:commontypes" xmlns="urn:ceva:eai:bwce:cfw:commontypes">
+
+	<!--	<xs:complexType name="A2ARoutingKeyType">
+		<xs:sequence>
+			<xs:element name="Key_DocumentSourceSystemCode" type="KeyStringType" minOccurs="0"/>
+			<xs:element name="Key_DocumentTargetSystemCode" type="KeyStringType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>-->
+	<xs:complexType name="B2BRoutingKeyType">
+		<xs:sequence>
+			<xs:element name="Key_DocumentPartnerCode" type="KeyStringType"/>
+			<xs:element name="Key_DocumentCustomerCode" type="KeyStringType"/>
+			<xs:element name="Key_DocumentBusinessUnitCode" type="KeyStringType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="B2BInterchangeKeyType">
+		<xs:sequence>
+			<xs:element name="Key_B2BPartnerID" type="KeyStringType"/>
+			<xs:element name="Key_B2BHostID" type="KeyStringType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:group name="RoutingKeyGroup">
+		<xs:sequence>
+			<xs:element name="B2BRoutingKeys" type="B2BRoutingKeyType" minOccurs="0"/>
+			<xs:element name="B2BInterchangeKeys" type="B2BInterchangeKeyType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:group>
+	<xs:group name="DocRoutingKeyGroup">
+		<xs:sequence>
+			<xs:element name="Key_DocumentCategory" type="KeyStringType" minOccurs="0"/>
+			<xs:element name="Key_DocumentName" type="KeyStringType" minOccurs="0"/>
+			<xs:element name="Key_DocumentType" type="KeyStringType" minOccurs="0"/>
+			<xs:element name="Key_DocumentDirectionQualifier" type="KeyStringType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:group>
+	<xs:complexType name="KeyStringType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="alias" type="xs:string"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="XPathEnabledStringType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="isXpath" type="xs:boolean"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="XPathEnabledIntType">
+		<xs:simpleContent>
+			<xs:extension base="xs:int">
+				<xs:attribute name="isXpath" type="xs:boolean"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="XPathEnabledNameStringType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="name" type="xs:string" use="required"/>
+				<xs:attribute name="type" type="xs:string"/>
+				<xs:attribute name="category" type="xs:string"/>
+				<xs:attribute name="isXpath" type="xs:boolean"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="XPathEnabledDestinationType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="destType" type="xs:string"/>
+				<xs:attribute name="layout" type="xs:string"/>
+				<xs:attribute name="priority" type="xs:int"/>
+				<xs:attribute name="isXpath" type="xs:boolean"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sca:composite xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:BW="http://xsd.tns.tibco.com/amf/models/sca/implementationtype/BW" xmlns:XMLSchema="http://www.w3.org/2001/XMLSchema" xmlns:compositeext="http://schemas.tibco.com/amx/3.0/compositeext" xmlns:rest="http://xsd.tns.tibco.com/bw/models/binding/rest" xmlns:sca="http://www.osoa.org/xmlns/sca/1.0" xmlns:scact="http://xsd.tns.tibco.com/amf/models/sca/componentType" xmlns:scaext="http://xsd.tns.tibco.com/amf/models/sca/extensions" xmi:id="_nOW1cMtDEey8tfknwYa-Zg" targetNamespace="http://tns.tibco.com/bw/composite/CommonFramework" name="CommonFramework" compositeext:version="1.0.0" compositeext:formatVersion="2">
+  <sca:property xmi:id="_nREyQMtDEey8tfknwYa-Zg" name="BW.APPNODE.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_nRZiYMtDEey8tfknwYa-Zg" name="BW.DEPLOYMENTUNIT.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_nRiFQMtDEey8tfknwYa-Zg" name="BW.HOST.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_nRrPMMtDEey8tfknwYa-Zg" name="BW.DEPLOYMENTUNIT.VERSION" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_nR1AMMtDEey8tfknwYa-Zg" name="BW.MODULE.VERSION" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_nR9jEMtDEey8tfknwYa-Zg" name="BW.CLOUD.PORT" type="XMLSchema:int" scalable="true"/>
+  <sca:property xmi:id="_nSFe4MtDEey8tfknwYa-Zg" name="BW.MODULE.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_f2l6gNd0Eey-doLjSHPXzg" name="/CommonCore/Docs/diskBasePath" type="XMLSchema:string" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_PeEoYNd-Eey-doLjSHPXzg" name="/CommonCore/Docs/diskoverflowPath" type="XMLSchema:string" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_SRaSsNd-Eey-doLjSHPXzg" name="/CommonCore/Docs/diskOverflowLimitBytes" type="XMLSchema:long" scaext:simpleValue="0" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_W2CUcNd-Eey-doLjSHPXzg" name="/CommonCore/Docs/compressionLimitBytes" type="XMLSchema:long" scaext:simpleValue="0" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_koLOoNd-Eey-doLjSHPXzg" name="/CommonCore/Docs/base64CheckMethod" type="XMLSchema:string" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_k7dXANd-Eey-doLjSHPXzg" name="/CommonCore/Docs/binaryCheckMethod" type="XMLSchema:string" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_98o8gNd-Eey-doLjSHPXzg" name="/CommonCore/Docs/binaryCheckLooseMaxBytes" type="XMLSchema:long" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_-j3UkNd-Eey-doLjSHPXzg" name="/CommonCore/Docs/binaryCheckLooseMaxNonText" type="XMLSchema:long" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_-8X7MNd-Eey-doLjSHPXzg" name="/CommonCore/Docs/inheritedCategorySuppressMask" type="XMLSchema:string" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="__XgYANd-Eey-doLjSHPXzg" name="/CommonCore/Docs/MaxReferenceNameLength" type="XMLSchema:int" publicAccess="true" scalable="true"/>
+  <sca:component xmi:id="_4diPUNdZEey-doLjSHPXzg" name="ComponentProcess" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_4dkEgNdZEey-doLjSHPXzg" processName="CommonCore.Test.Process"/>
+  </sca:component>
+</sca:composite>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns:tibex="http://www.tibco.com/bpel/2007/extensions" xmlns:tns="urn:ceva:eai:bwce:cfw:doc:extractfromxml" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified" attributeFormDefault="unqualified" targetNamespace="urn:ceva:eai:bwce:cfw:doc:extractfromxml">
+	<xsd:element name="Input">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Document" type="tns:nativeJavaObjectKey" />
+				<xsd:element name="OutputNamespace" type="xsd:string" minOccurs="0" />
+				<xsd:element name="Silent" type="xsd:boolean" minOccurs="0" />
+				<xsd:element name="NamespaceAware" type="xsd:boolean" minOccurs="0" />
+				<xsd:element name="UseSTAX" type="xsd:boolean" minOccurs="0" />
+				<xsd:element name="CreateDOM" type="xsd:boolean" minOccurs="0" />
+				<xsd:element name="Expression" minOccurs="0" maxOccurs="unbounded">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="name" type="xsd:string" />
+							<xsd:element name="expression" type="xsd:string" />
+							<xsd:element name="default" type="xsd:string" minOccurs="0" />
+							<xsd:element name="option" type="xsd:string" minOccurs="0" />
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Output">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Document" type="tns:nativeJavaObjectKey" />
+				<xsd:element name="ExpressionResults">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:any minOccurs="0" maxOccurs="unbounded" processContents="skip" />
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:complexType name="nativeJavaObjectKey">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:NMTOKEN" />
+		</xsd:simpleContent>
+	</xsd:complexType>
+
+</xsd:schema>
+
+

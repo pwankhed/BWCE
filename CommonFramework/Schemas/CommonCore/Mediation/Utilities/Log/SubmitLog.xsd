@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns:doc="urn:ceva:eai:bwce:cfw:doc:event" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions" xmlns:tns="urn:ceva:eai:bwce:cfw:doc:submitlog"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" targetNamespace="urn:ceva:eai:bwce:cfw:doc:submitlog">
+	<xsd:import namespace="urn:ceva:eai:bwce:cfw:doc:event" schemaLocation="../../../Context/DocumentEvent.xsd" />
+	<xsd:element name="Input">
+		<xsd:complexType>
+        <xsd:sequence>
+            <xsd:choice minOccurs="0">
+                <xsd:element name="Document" type="tns:nativeJavaObjectKey"/>
+                <xsd:sequence>
+                    <xsd:group ref="doc:DocIDPropsOverrideGroup"/>
+                    <xsd:group ref="doc:LogMetaPropsBaseGroup"/>
+                </xsd:sequence>
+            </xsd:choice>
+            <xsd:group ref="doc:LogInputGroup"/>
+        </xsd:sequence>		
+        </xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Output">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Document" type="tns:nativeJavaObjectKey" />
+				<xsd:element name="DocumentID" type="xsd:string" />
+				<xsd:element ref="doc:DocumentAttributes" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:complexType name="nativeJavaObjectKey">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:NMTOKEN" />
+		</xsd:simpleContent>
+	</xsd:complexType>		
+
+</xsd:schema>
+
+

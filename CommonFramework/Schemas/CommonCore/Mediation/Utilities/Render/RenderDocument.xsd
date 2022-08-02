@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns:doc="urn:ceva:eai:bwce:cfw:doc:event" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions" xmlns:tns="urn:ceva:eai:bwce:cfw:doc:renderdocument"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" targetNamespace="urn:ceva:eai:bwce:cfw:doc:renderdocument">
+	<xsd:import namespace="urn:ceva:eai:bwce:cfw:doc:event" schemaLocation="../../../Context/DocumentEvent.xsd" />
+	<xsd:element name="Input">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:sequence>
+					<xsd:element name="submit" type="xsd:boolean" minOccurs="0" />
+					<xsd:element name="ParentDocument" type="tns:nativeJavaObjectKey" minOccurs="0" />
+					<xsd:group ref="doc:DocInputGroup" />
+					<xsd:element name="Content" minOccurs="0">
+						<xsd:complexType>
+							<xsd:choice>
+								<xsd:element name="ContentAuto" type="xsd:string" />
+								<xsd:element name="Content" type="xsd:string" />
+								<xsd:element name="ContentBinary" type="xsd:base64Binary" />
+								<xsd:element name="ContentReference" type="xsd:string" />
+								<xsd:element name="xmlTree">
+									<xsd:complexType>
+										<xsd:sequence>
+											<xsd:any processContents="skip" />
+										</xsd:sequence>
+										<xsd:attribute name="formatDefaultNS" type="xsd:boolean" />
+									</xsd:complexType>
+								</xsd:element>
+							</xsd:choice>
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Output">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Document" type="tns:nativeJavaObjectKey" />
+				<xsd:element name="DocumentID" type="xsd:string" />
+				<xsd:element ref="doc:DocumentAttributes" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:complexType name="nativeJavaObjectKey">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:NMTOKEN" />
+		</xsd:simpleContent>
+	</xsd:complexType>	
+</xsd:schema>
+

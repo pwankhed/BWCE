@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:ceva:eai:bwce:cfw:doc:faultdetails" targetNamespace="urn:ceva:eai:bwce:cfw:doc:faultdetails" elementFormDefault="unqualified"
+	attributeFormDefault="unqualified">
+	<xsd:complexType name="ErrorReportType">
+		<xsd:sequence>
+			<xsd:element name="StackTrace" type="xsd:string" form="unqualified"/>
+			<xsd:element name="Msg" type="xsd:string" form="unqualified"/>
+			<xsd:element name="FullClass" type="xsd:string" form="unqualified"/>
+			<xsd:element name="Class" type="xsd:string" form="unqualified"/>
+			<xsd:element name="ProcessStack" type="xsd:string" form="unqualified"/>
+			<xsd:element name="MsgCode" type="xsd:string" form="unqualified" minOccurs="0"/>
+			<xsd:element name="Data" type="anydata" form="unqualified" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="anydata">
+		<xsd:sequence>
+			<xsd:any namespace="##any" processContents="skip" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="FaultPropertiesType">
+		<xsd:sequence>
+			<xsd:element name="IsRecoverable" type="RecoverableErrorType" minOccurs="0"/>
+			<xsd:element name="ErrorCode" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="ErrorLevel" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="ErrorType" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="ErrorCategory" type="xsd:string" minOccurs="0"/>
+
+			<!-- <xsd:element name="NotificationAlias" type="xsd:string" minOccurs="0"/> -->
+			<xsd:element name="Data" type="anydata" form="unqualified" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="RecoverableErrorType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:boolean">
+				<xsd:attribute name="minDelayMS" type="xsd:long"/>
+				<xsd:attribute name="backoffCoefficient" type="xsd:double"/>
+				<xsd:attribute name="maxDelayMS" type="xsd:long"/>
+				<xsd:attribute name="maxAttempts" type="xsd:int"/>
+				<xsd:attribute name="resetOnMax" type="xsd:boolean"/>
+				<xsd:attribute name="addJitter" type="xsd:boolean"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="FaultDetailsType">
+		<xsd:sequence>
+			<xsd:element name="ErrorReport" type="ErrorReportType"/>
+			<xsd:element name="FaultProperties" type="FaultPropertiesType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="ErrorReport" type="ErrorReportType"/>
+	<xsd:element name="FaultDetails" type="FaultDetailsType"/>
+
+	<!-- <xsd:element name="ProcessContext" type="ProcessContextType"/> -->
+	<xsd:element name="FaultProperties" type="FaultPropertiesType"/>
+	<xsd:element name="DocumentFault">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="DocumentObjId" type="xsd:string" minOccurs="0"/>
+				<xsd:element ref="FaultDetails"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:complexType name="exceptiondata">
+		<xsd:sequence>
+			<xsd:any namespace="##any" processContents="lax"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="exceptiondata" type="exceptiondata"/>
+</xsd:schema>

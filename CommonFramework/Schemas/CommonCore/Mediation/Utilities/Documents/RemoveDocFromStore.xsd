@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns:tibex="http://www.tibco.com/bpel/2007/extensions" xmlns:tns="urn:ceva:eai:bwce:cfw:doc:removedocfromstore"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" targetNamespace="urn:ceva:eai:bwce:cfw:doc:removedocfromstore">
+	<xsd:element name="Input">
+    <xsd:complexType>
+        <xsd:sequence>
+            <xsd:element name="Document" type="tns:nativeJavaObjectKey"/>
+        </xsd:sequence>
+    </xsd:complexType>
+	</xsd:element>
+	<xsd:complexType name="nativeJavaObjectKey">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:NMTOKEN" />
+		</xsd:simpleContent>
+	</xsd:complexType>
+
+</xsd:schema>
+
+

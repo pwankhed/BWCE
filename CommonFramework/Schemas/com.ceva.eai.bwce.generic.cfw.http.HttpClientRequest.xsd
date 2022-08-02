@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema elementFormDefault="qualified" version="1.0" targetNamespace="www.tibco.com/plugin/java/xmlSchema/com.ceva.eai.bwce.generic.cfw.http.HttpClientRequest" xmlns:tns="www.tibco.com/plugin/java/xmlSchema/com.ceva.eai.bwce.generic.cfw.http.HttpClientRequest" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="BasicAuthentication" type="tns:BasicAuthenticationType"/>
+
+  <xs:element name="ContentProvider" type="tns:ContentProviderType"/>
+
+  <xs:element name="FormField" type="tns:FormFieldType"/>
+
+  <xs:element name="HttpClientRequest" type="tns:HttpClientRequestType"/>
+
+  <xs:element name="HttpHeaders" type="tns:HttpHeadersType"/>
+
+  <xs:element name="HttpProxy" type="tns:HttpProxyType"/>
+
+  <xs:element name="MimeEnvelope" type="tns:MimeEnvelopeType"/>
+
+  <xs:element name="MimeHeaders" type="tns:MimeHeadersType"/>
+
+  <xs:element name="MimePart" type="tns:MimePartType"/>
+
+  <xs:element name="MultiPartFormField" type="tns:MultiPartFormFieldType"/>
+
+  <xs:element name="QueryParamField" type="tns:QueryParamFieldType"/>
+
+  <xs:element name="TransportHeader" type="tns:TransportHeaderType"/>
+
+  <xs:element name="TransportSecurity" type="tns:TransportSecurityType"/>
+
+  <xs:complexType name="HttpClientRequestType">
+    <xs:sequence>
+      <xs:element name="BaseURL" type="xs:string" minOccurs="0"/>
+      <xs:element ref="tns:BasicAuthentication" minOccurs="0"/>
+      <xs:element name="ConnectionTimeoutMS" type="xs:int" minOccurs="0"/>
+      <xs:element name="Content" type="tns:ContentProviderType" minOccurs="0"/>
+      <xs:element name="ContentFormField" type="tns:FormFieldType" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="ContentMultiPartFormField" type="tns:MultiPartFormFieldType" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="FollowRedirect" type="xs:boolean" minOccurs="0"/>
+      <xs:element name="HttpCookiePolicy" type="xs:string" minOccurs="0"/>
+      <xs:element ref="tns:HttpProxy" minOccurs="0"/>
+      <xs:element name="HttpVersion" type="xs:string" minOccurs="0"/>
+      <xs:element name="HttpVirtualHost" type="xs:string" minOccurs="0"/>
+      <xs:element name="Method" type="xs:string" minOccurs="0"/>
+      <xs:element ref="tns:MimeEnvelope" minOccurs="0"/>
+      <xs:element ref="tns:QueryParamField" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="QueryString" type="xs:string" minOccurs="0"/>
+      <xs:element name="RequestHeaders" type="tns:HttpHeadersType" minOccurs="0"/>
+      <xs:element name="RequestTimeoutMS" type="xs:int" minOccurs="0"/>
+      <xs:element ref="tns:TransportSecurity" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="BasicAuthenticationType">
+    <xs:sequence>
+      <xs:element name="AuthenticationRealm" type="xs:string" minOccurs="0"/>
+      <xs:element name="Password" type="xs:string" minOccurs="0"/>
+      <xs:element name="UserName" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ContentProviderType">
+    <xs:sequence>
+      <xs:element name="ContentBinary" type="xs:base64Binary" minOccurs="0"/>
+      <xs:element name="ContentDocumentId" type="xs:string" minOccurs="0"/>
+      <xs:element name="ContentFile" type="xs:string" minOccurs="0"/>
+      <xs:element name="ContentText" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="FormFieldType">
+    <xs:sequence>
+      <xs:element name="FieldContent" type="tns:ContentProviderType" minOccurs="0"/>
+      <xs:element name="FieldName" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="MultiPartFormFieldType">
+    <xs:sequence>
+      <xs:element name="FieldContent" type="tns:ContentProviderType" minOccurs="0"/>
+      <xs:element name="FieldName" type="xs:string" minOccurs="0"/>
+      <xs:element name="Header" type="tns:TransportHeaderType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="TransportHeaderType">
+    <xs:sequence>
+      <xs:element name="Name" type="xs:string" minOccurs="0"/>
+      <xs:element name="Type" type="xs:string" minOccurs="0"/>
+      <xs:element name="Value" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="HttpProxyType">
+    <xs:sequence>
+      <xs:element name="Password" type="xs:string" minOccurs="0"/>
+      <xs:element name="ProxyHost" type="xs:string" minOccurs="0"/>
+      <xs:element name="ProxyPort" type="xs:int" minOccurs="0"/>
+      <xs:element name="UserName" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="MimeEnvelopeType">
+    <xs:sequence>
+      <xs:element ref="tns:MimePart" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="MimePartType">
+    <xs:sequence>
+      <xs:element name="Content" type="tns:ContentProviderType" minOccurs="0"/>
+      <xs:element ref="tns:MimeHeaders" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="MimeHeadersType">
+    <xs:sequence>
+      <xs:element name="ContentDisposition" type="xs:string" minOccurs="0"/>
+      <xs:element name="ContentEncoding" type="xs:string" minOccurs="0"/>
+      <xs:element name="ContentId" type="xs:string" minOccurs="0"/>
+      <xs:element name="ContentTransferEncoding" type="xs:string" minOccurs="0"/>
+      <xs:element name="ContentType" type="xs:string" minOccurs="0"/>
+      <xs:element name="MimeHeader" type="tns:TransportHeaderType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="QueryParamFieldType">
+    <xs:sequence>
+      <xs:element name="FieldBinary" type="xs:base64Binary" minOccurs="0"/>
+      <xs:element name="FieldName" type="xs:string" minOccurs="0"/>
+      <xs:element name="FieldText" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="HttpHeadersType">
+    <xs:sequence>
+      <xs:element name="Accept" type="xs:string" minOccurs="0"/>
+      <xs:element name="AcceptCharset" type="xs:string" minOccurs="0"/>
+      <xs:element name="AcceptEncoding" type="xs:string" minOccurs="0"/>
+      <xs:element name="ContentEncoding" type="xs:string" minOccurs="0"/>
+      <xs:element name="ContentTransferEncoding" type="xs:string" minOccurs="0"/>
+      <xs:element name="ContentType" type="xs:string" minOccurs="0"/>
+      <xs:element name="Cookie" type="xs:string" minOccurs="0"/>
+      <xs:element name="Pragma" type="xs:string" minOccurs="0"/>
+      <xs:element name="RequestHeader" type="tns:TransportHeaderType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="TransportSecurityType">
+    <xs:sequence>
+      <xs:element name="KeyStorePassword" type="xs:string" minOccurs="0"/>
+      <xs:element name="KeyStoreType" type="xs:string" minOccurs="0"/>
+      <xs:element name="KeyStoreURL" type="xs:string" minOccurs="0"/>
+      <xs:element name="TLSDisabledCipher" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="TLSSupportedCipher" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="TLSSupportedProtocol" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="ThrustStorePassword" type="xs:string" minOccurs="0"/>
+      <xs:element name="ThrustStoreType" type="xs:string" minOccurs="0"/>
+      <xs:element name="ThrustStoreURL" type="xs:string" minOccurs="0"/>
+      <xs:element name="TrustAll" type="xs:boolean" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+

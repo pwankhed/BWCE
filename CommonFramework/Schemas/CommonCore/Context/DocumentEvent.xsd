@@ -1,0 +1,235 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:ceva:eai:bwce:cfw:doc:event" targetNamespace="urn:ceva:eai:bwce:cfw:doc:event" elementFormDefault="unqualified"
+	attributeFormDefault="unqualified">
+	<!-- elements -->
+	<xsd:element name="DocumentEvent" type="DocumentEventComplexType" />
+	<xsd:element name="LogEvent" type="LogEventComplexType" />
+	<xsd:element name="DocumentAttributes" type="AttributesComplexType" />
+
+	<!-- complex types -->
+	<xsd:complexType name="DocumentEventComplexType">
+		<xsd:sequence>
+			<xsd:element name="Event" type="EventPropsType" />
+			<xsd:element name="DocID" type="DocIDPropsType" />
+			<xsd:element name="DocMeta" type="DocMetaPropsType" minOccurs="0" />
+			<xsd:element name="B2BContext" type="B2BPropsType" minOccurs="0" />
+			<xsd:element name="EAIContext" type="EAIPropsType" minOccurs="0" />
+			<xsd:element name="Log" type="LogPropsType" minOccurs="0" />
+			<xsd:element name="Content" type="ContentPropsType" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LogEventComplexType">
+		<xsd:sequence>
+			<xsd:element name="Event" type="EventPropsType" />
+			<xsd:element name="DocID" type="DocIDPropsType" />
+			<xsd:element name="EAIContext" type="EAIPropsType" />
+			<xsd:element name="LogMeta" type="LogMetaType" />
+			<xsd:element name="Log" type="LogPropsType" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="EventPropsType">
+		<xsd:group ref="EventPropsGroup" />
+	</xsd:complexType>
+	<xsd:complexType name="DocIDPropsType">
+		<xsd:group ref="DocIDPropsGroup" />
+	</xsd:complexType>
+	<xsd:complexType name="DocIDPropsOverrideType">
+		<xsd:group ref="DocIDPropsOverrideGroup" />
+	</xsd:complexType>
+	<xsd:complexType name="DocMetaPropsBaseType">
+		<xsd:group ref="DocMetaPropsBaseGroup" />
+	</xsd:complexType>
+	<xsd:complexType name="DocMetaPropsType">
+		<xsd:group ref="DocMetaPropsGroup" />
+	</xsd:complexType>
+	<xsd:complexType name="B2BPropsType">
+		<xsd:group ref="B2BPropsGroup" />
+	</xsd:complexType>
+	<xsd:complexType name="ContentPropsType">
+		<xsd:group ref="ContentPropsGroup" />
+	</xsd:complexType>
+	<xsd:complexType name="EAIPropsType">
+		<xsd:group ref="EAIPropsGroup" />
+	</xsd:complexType>
+	<xsd:complexType name="LogPropsType">
+		<xsd:group ref="LogPropsGroup" />
+	</xsd:complexType>
+	<xsd:complexType name="LogMetaType">
+		<xsd:group ref="LogMetaPropsBaseGroup" />
+	</xsd:complexType>
+	<xsd:complexType name="LogPropsBaseType">
+		<xsd:group ref="LogPropsBaseGroup" />
+	</xsd:complexType>
+	<xsd:complexType name="AttributesComplexType">
+		<xsd:sequence>
+			<xsd:element name="Attribute" minOccurs="0" maxOccurs="unbounded">
+				<xsd:complexType>
+					<xsd:simpleContent>
+						<xsd:extension base="xsd:string">
+							<xsd:attribute name="category" type="xsd:string" />
+							<xsd:attribute name="type" type="xsd:string" />
+							<xsd:attribute name="name" type="xsd:string" use="required" />
+						</xsd:extension>
+					</xsd:simpleContent>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ContentType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="base64" type="xsd:boolean" />
+				<xsd:attribute name="binary" type="xsd:boolean" />
+				<xsd:attribute name="compressed" type="xsd:boolean" />
+				<xsd:attribute name="compressiontype" type="xsd:string" />
+				<xsd:attribute name="reference" type="xsd:boolean" />
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+
+	<!-- groups -->
+	<xsd:group name="DocBaseInputGroup">
+		<xsd:sequence>
+			<xsd:element name="addToDocStore" type="xsd:boolean" minOccurs="0" />
+			<xsd:element name="DocIDs" type="DocIDPropsOverrideType" minOccurs="0" />
+			<xsd:element name="DocMeta" type="DocMetaPropsBaseType" minOccurs="0" />
+			<xsd:element name="B2BContext" type="B2BPropsType" minOccurs="0" />
+			<xsd:element name="Attributes" type="AttributesComplexType" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:group>
+	<xsd:group name="DocInputGroup">
+		<xsd:sequence>
+			<xsd:element name="disableContent" type="xsd:boolean" minOccurs="0" />
+			<xsd:group ref="DocBaseInputGroup" />
+			<xsd:element name="Log" type="LogPropsBaseType" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:group>
+	<xsd:group name="LogInputGroup">
+		<xsd:sequence>
+			<xsd:element name="Log" type="LogPropsBaseType" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:group>
+	<xsd:group name="ContentInputGroup">
+		<xsd:sequence>
+			<xsd:element name="Content" type="ContentPropsType" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:group>
+	<xsd:group name="AllDocPropsGroup">
+		<xsd:sequence>
+			<xsd:group ref="DocIDPropsGroup" />
+			<xsd:group ref="DocMetaPropsGroup" />
+			<xsd:group ref="B2BPropsGroup" />
+			<xsd:group ref="ContentPropsGroup" />
+		</xsd:sequence>
+	</xsd:group>
+	<xsd:group name="AllLogPropsGroup">
+		<xsd:sequence>
+			<xsd:group ref="EAIPropsGroup" />
+			<xsd:group ref="LogPropsGroup" />
+		</xsd:sequence>
+	</xsd:group>
+	<xsd:group name="EventPropsGroup">
+		<xsd:sequence>
+			<xsd:element name="EventID" type="xsd:string" />
+			<xsd:element name="EventType" type="xsd:string" />
+		</xsd:sequence>
+	</xsd:group>
+	<xsd:group name="DocIDPropsOverrideGroup">
+		<xsd:sequence>
+			<xsd:element name="DocumentID" type="xsd:string" minOccurs="0" />
+			<xsd:element name="DocumentCorrelationID" type="xsd:string" minOccurs="0" />
+			<xsd:element name="DocumentSourceID" type="xsd:string" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:group>
+	<xsd:group name="DocIDPropsGroup">
+		<xsd:sequence>
+			<xsd:element name="DocumentID" type="xsd:string" />
+			<xsd:element name="DocumentCorrelationID" type="xsd:string" />
+			<xsd:element name="DocumentSourceID" type="xsd:string" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:group>
+	<xsd:group name="DocMetaPropsBaseGroup">
+		<xsd:sequence>
+			<xsd:element name="DocumentPriority" type="xsd:unsignedInt" minOccurs="0" />
+			<xsd:element name="DocumentCategory" type="xsd:string" minOccurs="0" />
+			<xsd:element name="DocumentName" type="xsd:string" minOccurs="0" />
+			<xsd:element name="DocumentType" type="xsd:string" minOccurs="0" />
+			<xsd:element name="DocumentPartnerCode" type="xsd:string" minOccurs="0" />
+			<xsd:element name="DocumentCustomerCode" type="xsd:string" minOccurs="0" />
+			<xsd:element name="DocumentBusinessUnitCode" type="xsd:string" minOccurs="0" />
+			<xsd:element name="DocumentBusinessReferenceID" type="xsd:string" minOccurs="0" />
+			<xsd:element name="DocumentBatchID" type="xsd:string" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:group>
+	<xsd:group name="DocMetaPropsGroup">
+		<xsd:sequence>
+			<xsd:group ref="DocMetaPropsBaseGroup" />
+			<xsd:element name="IsSource" type="xsd:boolean" minOccurs="0" />
+			<xsd:element name="DocumentSchemaName" type="xsd:string" minOccurs="0" />
+			<xsd:element name="DocumentInterfaceName" type="xsd:string" minOccurs="0" />
+			<xsd:element name="DocumentInterfaceVersion" type="xsd:string" minOccurs="0" />
+			<xsd:element name="DocumentSourceSystemCode" type="xsd:string" minOccurs="0" />
+			<xsd:element name="DocumentTargetSystemCode" type="xsd:string" minOccurs="0" />
+			<xsd:element name="DocumentTimestampUTC" type="xsd:dateTime" minOccurs="0" />
+			<xsd:element name="DocumentTimestampEPOC" type="xsd:unsignedLong" minOccurs="0" />
+			<xsd:element name="DocumentAttributes" type="xsd:string" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:group>
+	<xsd:group name="B2BPropsGroup">
+		<xsd:sequence>
+			<xsd:element name="B2BPartnerID" type="xsd:string" minOccurs="0" />
+			<xsd:element name="B2BHostID" type="xsd:string" minOccurs="0" />
+			<xsd:element name="B2BDocumentType" type="xsd:string" minOccurs="0" />
+			<xsd:element name="B2BInterchangeID" type="xsd:string" minOccurs="0" />
+			<xsd:element name="B2BGroupID" type="xsd:string" minOccurs="0" />
+			<xsd:element name="B2BTransactionID" type="xsd:string" minOccurs="0" />
+			<xsd:element name="B2BTransactionDirection" type="xsd:string" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:group>
+	<xsd:group name="ContentPropsGroup">
+		<xsd:sequence>
+			<xsd:element name="Content" type="ContentType" />
+			<xsd:element name="ContentEncoding" type="xsd:string" minOccurs="0" />
+			<xsd:element name="ContentMimeType" type="xsd:string" minOccurs="0" />
+			<xsd:element name="ContentSizeBytes" type="xsd:unsignedLong" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:group>
+	<xsd:group name="EAIPropsGroup">
+		<xsd:sequence>
+			<xsd:element name="EAIDomain" type="xsd:string" minOccurs="0" />
+			<xsd:element name="EAIDeployment" type="xsd:string" minOccurs="0" />
+			<xsd:element name="EAIHostname" type="xsd:string" minOccurs="0" />
+			<xsd:element name="EAIInstance" type="xsd:string" minOccurs="0" />
+			<xsd:element name="EAIProcessStarter" type="xsd:string" minOccurs="0" />
+			<xsd:element name="EAIProcessPath" type="xsd:string" minOccurs="0" />
+			<xsd:element name="EAICallstack" type="xsd:string" minOccurs="0" />
+			<xsd:element name="EAIReceiveQueue" type="xsd:string" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:group>
+	<xsd:group name="LogPropsBaseGroup">
+		<xsd:sequence>
+			<xsd:element name="LogCategory" type="xsd:string" minOccurs="0" />
+			<xsd:element name="LogLevel" type="xsd:string" minOccurs="0" />
+			<xsd:element name="LogCode" type="xsd:string" minOccurs="0" />
+			<xsd:element name="LogType" type="xsd:string" minOccurs="0" />
+			<xsd:element name="LogMessage" type="xsd:string" minOccurs="0" />
+			<xsd:element name="LogTrace" type="xsd:string" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:group>
+	<xsd:group name="LogMetaPropsBaseGroup">
+		<xsd:sequence>
+			<xsd:element name="DocumentPartnerCode" type="xsd:string" minOccurs="0" />
+			<xsd:element name="DocumentCustomerCode" type="xsd:string" minOccurs="0" />
+			<xsd:element name="DocumentInterfaceName" type="xsd:string" minOccurs="0" />
+			<xsd:element name="DocumentType" type="xsd:string" minOccurs="0" />
+			<xsd:element name="DocumentSourceSystemCode" type="xsd:string" minOccurs="0" />
+			<xsd:element name="DocumentTargetSystemCode" type="xsd:string" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:group>
+	<xsd:group name="LogPropsGroup">
+		<xsd:sequence>
+			<xsd:group ref="LogPropsBaseGroup" />
+			<xsd:element name="LogTimestampUTC" type="xsd:dateTime" minOccurs="0" />
+			<xsd:element name="LogTimestampEPOC" type="xsd:unsignedLong" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:group>
+</xsd:schema>

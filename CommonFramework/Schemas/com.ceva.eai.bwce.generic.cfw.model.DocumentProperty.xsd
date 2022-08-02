@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema elementFormDefault="qualified" version="1.0" targetNamespace="www.tibco.com/plugin/java/xmlSchema/com.ceva.eai.bwce.generic.cfw.model.DocumentProperty" xmlns:tns="www.tibco.com/plugin/java/xmlSchema/com.ceva.eai.bwce.generic.cfw.model.DocumentProperty" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="DocumentProperty" type="tns:DocumentPropertyType"/>
+
+  <xs:complexType name="DocumentPropertyType">
+    <xs:sequence>
+      <xs:element name="Category" type="xs:string" minOccurs="0"/>
+      <xs:element name="Key" type="xs:string" minOccurs="0"/>
+      <xs:element name="Name" type="xs:string" minOccurs="0"/>
+      <xs:element name="Type" type="xs:string" minOccurs="0"/>
+      <xs:element name="Value" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+

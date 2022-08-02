@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:ceva:eai:bwce:cfw:doc:exceptionhandlerconfig" targetNamespace="urn:ceva:eai:bwce:cfw:doc:exceptionhandlerconfig"
+	elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xsd:element name="ExceptionHandlerConfiguration">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="configuration" minOccurs="0" maxOccurs="unbounded" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="configuration">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="matching" type="matchingType" minOccurs="0" />
+				<xsd:element ref="properties" minOccurs="0" />
+				<xsd:element ref="configuration" minOccurs="0" maxOccurs="unbounded" />
+			</xsd:sequence>
+			<xsd:attribute name="errorClass" type="xsd:string" />
+			<xsd:attribute name="errorCode" type="xsd:string" use="required" />
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="properties" type="ExceptionPropertiesType" />
+	<xsd:complexType name="ExceptionPropertiesType">
+		<xsd:sequence>
+			<xsd:element name="isRecoverable" type="RecoverableErrorType" minOccurs="0" />
+			<xsd:element name="ErrorCode" type="XPathEnabledStringType" minOccurs="0" />
+			<xsd:element name="ErrorLevel" type="XPathEnabledStringType" minOccurs="0" />
+			<xsd:element name="ErrorType" type="XPathEnabledStringType" minOccurs="0" />
+			<xsd:element name="ErrorCategory" type="XPathEnabledStringType" minOccurs="0" />
+		</xsd:sequence>
+		<xsd:attribute name="isFinal" type="xsd:boolean" default="true" />
+		<xsd:attribute name="priority" type="xsd:int" />
+		<xsd:attribute name="level" type="xsd:int" />
+		<xsd:attribute name="alias" type="xsd:string" />
+	</xsd:complexType>
+	<xsd:complexType name="matchingType">
+		<xsd:sequence>
+			<xsd:element name="xpathCriteria" type="xsd:string" minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element name="regexpCriteria" minOccurs="0" maxOccurs="unbounded">
+				<xsd:complexType>
+					<xsd:simpleContent>
+						<xsd:extension base="xsd:string">
+							<xsd:attribute name="xpath" type="xsd:string" use="required" />
+						</xsd:extension>
+					</xsd:simpleContent>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="RecoverableErrorType">
+		<xsd:simpleContent>
+			<xsd:extension base="XPathEnabledBooleanType">
+				<xsd:attribute name="minDelayMS" type="xsd:long" />
+				<xsd:attribute name="backoffCoefficient" type="xsd:double" />
+				<xsd:attribute name="maxDelayMS" type="xsd:long" />
+				<xsd:attribute name="maxAttempts" type="xsd:int" />
+				<xsd:attribute name="resetOnMax" type="xsd:boolean" />
+				<xsd:attribute name="addJitter" type="xsd:boolean" />
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="XPathEnabledStringType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="isXPath" type="xsd:boolean" />
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="XPathEnabledBooleanType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:boolean">
+				<xsd:attribute name="isXPath" type="xsd:boolean" />
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+</xsd:schema>

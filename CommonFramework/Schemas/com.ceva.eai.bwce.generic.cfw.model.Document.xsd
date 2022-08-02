@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema elementFormDefault="qualified" version="1.0" targetNamespace="www.tibco.com/plugin/java/xmlSchema/com.ceva.eai.bwce.generic.cfw.model.Document" xmlns:tns="www.tibco.com/plugin/java/xmlSchema/com.ceva.eai.bwce.generic.cfw.model.Document" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="Document" type="tns:DocumentType"/>
+
+  <xs:element name="DocumentProperties" type="tns:DocumentPropertiesType"/>
+
+  <xs:element name="DocumentProperty" type="tns:DocumentPropertyType"/>
+
+  <xs:complexType name="DocumentType">
+    <xs:sequence>
+      <xs:element name="Base64" type="xs:boolean" minOccurs="0"/>
+      <xs:element name="Binary" type="xs:boolean" minOccurs="0"/>
+      <xs:element name="Compressed" type="xs:boolean" minOccurs="0"/>
+      <xs:element name="CompressionType" type="xs:string" minOccurs="0"/>
+      <xs:element name="DocumentCategory" type="xs:string" minOccurs="0"/>
+      <xs:element name="DocumentCorrelationID" type="xs:string" minOccurs="0"/>
+      <xs:element name="DocumentEncoding" type="xs:string" minOccurs="0"/>
+      <xs:element name="DocumentID" type="xs:string" minOccurs="0"/>
+      <xs:element name="DocumentMimeType" type="xs:string" minOccurs="0"/>
+      <xs:element name="DocumentName" type="xs:string" minOccurs="0"/>
+      <xs:element name="DocumentNameGenerated" type="xs:boolean" minOccurs="0"/>
+      <xs:element name="DocumentPriority" type="xs:int" minOccurs="0"/>
+      <xs:element name="DocumentSizeBytes" type="xs:long" minOccurs="0"/>
+      <xs:element name="DocumentSourceID" type="xs:string" minOccurs="0"/>
+      <xs:element name="DocumentType" type="xs:string" minOccurs="0"/>
+      <xs:element name="Properties" type="tns:DocumentPropertiesType" minOccurs="0"/>
+      <xs:element name="Reference" type="xs:boolean" minOccurs="0"/>
+      <xs:element name="ReferenceIsUrl" type="xs:boolean" minOccurs="0"/>
+      <xs:element name="Registered" type="xs:boolean" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DocumentPropertiesType">
+    <xs:sequence>
+      <xs:element name="Property" type="tns:DocumentPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DocumentPropertyType">
+    <xs:sequence>
+      <xs:element name="Category" type="xs:string" minOccurs="0"/>
+      <xs:element name="Key" type="xs:string" minOccurs="0"/>
+      <xs:element name="Name" type="xs:string" minOccurs="0"/>
+      <xs:element name="Type" type="xs:string" minOccurs="0"/>
+      <xs:element name="Value" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+
