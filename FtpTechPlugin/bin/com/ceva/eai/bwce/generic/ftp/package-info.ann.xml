@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ASCII"?>
+<annox:package xmlns:annox="http://annox.dev.java.net" xmlns:jaxb="http://annox.dev.java.net/javax.xml.bind.annotation">
+  <annox:class name="FTPConnection">
+    <jaxb:XmlAccessorType value="NONE"/>
+    <jaxb:XmlType name="FTPConnectionType" propOrder="Host Password Port Username "/>
+    <jaxb:XmlRootElement name="FTPConnection" namespace="www.tibco.com/plugin/java/xmlSchema/com.ceva.eai.bwce.generic.ftp.FTPConnection"/>
+    <annox:field name="Host">
+      <jaxb:XmlElement name="Host" namespace="www.tibco.com/plugin/java/xmlSchema/com.ceva.eai.bwce.generic.ftp.FTPConnection"/>
+    </annox:field>
+    <annox:field name="Password">
+      <jaxb:XmlElement name="Password" namespace="www.tibco.com/plugin/java/xmlSchema/com.ceva.eai.bwce.generic.ftp.FTPConnection"/>
+    </annox:field>
+    <annox:field name="Port">
+      <jaxb:XmlElement name="Port" namespace="www.tibco.com/plugin/java/xmlSchema/com.ceva.eai.bwce.generic.ftp.FTPConnection" required="false" type="java.lang.Integer"/>
+    </annox:field>
+    <annox:field name="Username">
+      <jaxb:XmlElement name="Username" namespace="www.tibco.com/plugin/java/xmlSchema/com.ceva.eai.bwce.generic.ftp.FTPConnection"/>
+    </annox:field>
+  </annox:class>
+  <jaxb:XmlSchema elementFormDefault="QUALIFIED" namespace="www.tibco.com/plugin/java/xmlSchema/com.ceva.eai.bwce.generic.ftp.FTPConnection"/>
+</annox:package>

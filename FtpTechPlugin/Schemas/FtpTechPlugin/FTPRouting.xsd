@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsd:schema xmlns="urn:ceva:eai:bwce:ftptechplugin:ftprouting"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:types="urn:ceva:eai:bwce:cfw:commontypes"
+	targetNamespace="urn:ceva:eai:bwce:ftptechplugin:ftprouting"
+	elementFormDefault="qualified" attributeFormDefault="unqualified">
+	
+	<xsd:import namespace="urn:ceva:eai:bwce:cfw:commontypes" schemaLocation="../../../CommonFramework/Schemas/CommonCore/CommonSchemas/CommonTypes.xsd" />
+
+	<!-- FtpRouting-->
+
+
+	<xsd:element name="FtpRouting">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="DestinationAlias"
+					type="DestinationAliasType" minOccurs="0" maxOccurs="unbounded" />
+				<xsd:element ref="FtpRoute" minOccurs="0"
+					maxOccurs="unbounded" />
+			</xsd:sequence>
+		</xsd:complexType>
+		<xsd:unique name="unique-headeralias">
+			<xsd:selector xpath="FtpRoute" />
+			<xsd:field xpath="@alias" />
+		</xsd:unique>
+	</xsd:element>
+
+	<!-- FtpRoute -->
+	<xsd:element name="FtpRoute">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="FtpConnection" />
+				<xsd:element ref="RouteKey" minOccurs="0" />
+				<xsd:element ref="InboundDocRouting" minOccurs="0"
+					maxOccurs="unbounded" />
+				<xsd:element ref="OutboundDocRouting" minOccurs="0"
+					maxOccurs="unbounded" />
+			</xsd:sequence>
+			<xsd:attribute name="alias" type="xsd:string" />
+			<xsd:attribute name="PollInterval" type="xsd:string" />
+			<xsd:attribute name="CronExpression" type="xsd:string" />
+		</xsd:complexType>
+		<xsd:unique name="unique-indocalias">
+			<xsd:selector xpath="InboundDocRouting" />
+			<xsd:field xpath="@alias" />
+		</xsd:unique>
+		<xsd:unique name="unique-outdocalias">
+			<xsd:selector xpath="OutboundDocRouting" />
+			<xsd:field xpath="@alias" />
+		</xsd:unique>
+	</xsd:element>
+
+	<!-- InboundDocRouting -->
+	<xsd:element name="InboundDocRouting">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:group ref="types:DocRoutingKeyGroup" minOccurs="0" />
+				<xsd:element name="RemoteDir"
+					type="types:XPathEnabledStringType" />
+				<xsd:element name="RemoteMask">
+					<xsd:complexType>
+						<xsd:simpleContent>
+							<xsd:extension base="xsd:string">
+								<xsd:attribute name="isRegExp"
+									type="xsd:boolean" />
+								<xsd:attribute name="isFlag"
+									type="xsd:boolean" />
+								<xsd:attribute name="isBinary"
+									type="xsd:boolean" />
+								<xsd:attribute name="dataExtension"
+									type="xsd:string" />
+								<xsd:attribute name="stableTimeMS"
+									type="xsd:long" />
+								<xsd:attribute name="maxFiles"
+									type="xsd:int" />
+								<xsd:attribute name="allowZeroSize"
+									type="xsd:boolean" />
+								<xsd:attribute name="stripBOM"
+									type="xsd:boolean" />
+							</xsd:extension>
+						</xsd:simpleContent>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="RemoteArchiveDir"
+					type="types:XPathEnabledStringType" minOccurs="0" />
+				<xsd:element name="TransferMode" type="xsd:string"
+					minOccurs="0" />
+				<xsd:element name="FileMode" type="xsd:string"
+					minOccurs="0" />
+				<xsd:element name="SiteCommand" type="SiteCommandType"
+					minOccurs="0" maxOccurs="unbounded" />
+				<xsd:element name="ContentEncoding"
+					type="types:XPathEnabledStringType" />
+				<xsd:choice>
+					<xsd:element name="DestinationAliasName"
+						type="xsd:string" />
+					<xsd:element name="Destination"
+						type="types:XPathEnabledDestinationType" minOccurs="0" />
+				</xsd:choice>
+				<xsd:element name="DestinationProperty"
+					type="types:XPathEnabledNameStringType" minOccurs="0"
+					maxOccurs="unbounded" />
+			</xsd:sequence>
+			<xsd:attribute name="alias" type="xsd:string"
+				use="required" />
+		</xsd:complexType>
+	</xsd:element>
+
+	<!-- OutboundDocRouting -->
+	<xsd:element name="OutboundDocRouting">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:group ref="types:DocRoutingKeyGroup" minOccurs="0" />
+				<xsd:element name="RemoteName"
+					type="types:XPathEnabledStringType" minOccurs="0" />
+				<xsd:element name="RemoteDir"
+					type="types:XPathEnabledStringType" />
+				<xsd:element name="RemoteTmpName"
+					type="types:XPathEnabledStringType" minOccurs="0" />
+				<xsd:element name="RemoteTmpDir"
+					type="types:XPathEnabledStringType" minOccurs="0" />
+				<xsd:element name="RemoteFileEncoding" type="xsd:string"
+					minOccurs="0" />
+				<xsd:element name="RemoteFlagContent"
+					type="types:XPathEnabledStringType" minOccurs="0" />
+				<xsd:element name="RemoteAppend" type="xsd:boolean"
+					minOccurs="0" />
+				<xsd:element name="TransferMode" type="xsd:string"
+					minOccurs="0" />
+				<xsd:element name="FileMode" type="xsd:string"
+					minOccurs="0" />
+				<xsd:element name="SiteCommand" type="SiteCommandType"
+					minOccurs="0" maxOccurs="unbounded" />
+				<xsd:element name="UseRename" type="xsd:boolean"
+					minOccurs="0" />
+				<xsd:element name="TimeOut" type="xsd:integer"
+					minOccurs="0" />
+				<xsd:element name="RemoveLocal" type="xsd:boolean"
+					minOccurs="0" />
+				<xsd:element name="ForceBinary" type="xsd:boolean"
+					minOccurs="0" />
+				<xsd:element name="UseFlag" type="xsd:boolean"
+					minOccurs="0" />
+				<xsd:element name="FlagExtension" type="xsd:string"
+					minOccurs="0" />
+				<xsd:element name="NotificationAlias" type="xsd:string"
+					minOccurs="0" />
+				<xsd:element name="NextDestination"
+					type="NextDestinationType" minOccurs="0" maxOccurs="unbounded" />
+			</xsd:sequence>
+			<xsd:attribute name="alias" type="xsd:string"
+				use="required" />
+		</xsd:complexType>
+	</xsd:element>
+
+	<!-- matchingType -->
+	<xsd:complexType name="matchingType">
+		<xsd:sequence>
+			<xsd:element name="xpathCriteria" type="xsd:string"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element name="regexpCriteria" minOccurs="0"
+				maxOccurs="unbounded">
+				<xsd:complexType>
+					<xsd:simpleContent>
+						<xsd:extension base="xsd:string">
+							<xsd:attribute name="xpath"
+								type="xsd:string" use="required" />
+						</xsd:extension>
+					</xsd:simpleContent>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<!-- HeaderDocKeyValueType -->
+	<xsd:complexType name="HeaderDocKeyValueType">
+		<xsd:sequence>
+			<xsd:element ref="RouteKey" />
+			<xsd:group ref="types:DocRoutingKeyGroup" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<!-- NextDestinationType -->
+	<xsd:complexType name="NextDestinationType">
+		<xsd:sequence>
+			<xsd:choice>
+				<xsd:element name="DestinationAliasName"
+					type="xsd:string" />
+				<xsd:element name="Destination"
+					type="types:XPathEnabledDestinationType" minOccurs="0" />
+			</xsd:choice>
+			<xsd:element name="DestinationProperty"
+				type="types:XPathEnabledNameStringType" minOccurs="0"
+				maxOccurs="unbounded" />
+		</xsd:sequence>
+		<xsd:attribute name="qualifier" type="xsd:string"
+			use="required" />
+	</xsd:complexType>
+
+	<!-- HeaderDocPropValueType -->
+	<xsd:complexType name="HeaderDocPropValueType">
+		<xsd:group ref="RoutePropsGroup" />
+	</xsd:complexType>
+
+	<!-- HeaderDocPropsResults -->
+	<xsd:complexType name="HeaderDocPropResults">
+		<xsd:sequence>
+			<xsd:element name="headerAlias" type="xsd:string" />
+			<xsd:element name="documentAlias" type="xsd:string" />
+			<xsd:element name="keyValues" type="HeaderDocKeyValueType" />
+			<xsd:element name="propValues"
+				type="HeaderDocPropValueType" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<!-- RouteKey -->
+	<xsd:element name="RouteKey">
+		<xsd:complexType>
+			<xsd:group ref="types:RoutingKeyGroup" />
+		</xsd:complexType>
+	</xsd:element>
+
+	<!-- RoutePropsGroups -->
+	<xsd:group name="RoutePropsGroup">
+		<xsd:sequence>
+			<xsd:element name="Destination"
+				type="types:XPathEnabledDestinationType" minOccurs="0" />
+			<xsd:element name="DestinationProperty"
+				type="types:XPathEnabledNameStringType" minOccurs="0"
+				maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:group>
+
+	<!-- FtpConnection -->
+	<xsd:element name="FtpConnection">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Host" type="xsd:string" />
+				<xsd:element name="Port" type="xsd:int" />
+				<xsd:element name="Username" type="xsd:string" />
+				<xsd:element name="Password" type="xsd:string" />
+				<xsd:element name="NotificationAlias" type="xsd:string"
+					minOccurs="0" />
+				<xsd:element name="ConnectionTimeoutMS" type="xsd:int"
+					minOccurs="0" />
+				<xsd:element name="DefaultDataTimeoutMS" type="xsd:int"
+					minOccurs="0" />
+				<xsd:element name="DefaultStableTimeMS" type="xsd:int"
+					minOccurs="0" />
+				<xsd:element name="DefaultTransferMode"
+					type="xsd:string" minOccurs="0" />
+				<xsd:element name="DefaultFileMode" type="xsd:string"
+					minOccurs="0" />
+				<xsd:element name="CompressionThresholdSizeBytes"
+					type="xsd:long" minOccurs="0" />
+				<xsd:element name="DiskThresholdSizeBytes"
+					type="xsd:long" minOccurs="0" />
+				<xsd:element name="SystemOffsetMS" type="xsd:long"
+					minOccurs="0" />
+				<xsd:element name="SiteCommand" type="SiteCommandType"
+					minOccurs="0" maxOccurs="unbounded" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<!-- DestinationAliases -->
+	<xsd:element name="DestinationAliases">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="DestinationAlias"
+					type="DestinationAliasType" />
+			</xsd:sequence>
+		</xsd:complexType>
+		<xsd:unique name="unique-DestinationAlias">
+			<xsd:selector xpath="DestinationAlias" />
+			<xsd:field xpath="@alias" />
+		</xsd:unique>
+	</xsd:element>
+
+	<!-- DestinationAliasType -->
+	<xsd:complexType name="DestinationAliasType">
+		<xsd:group ref="RoutePropsGroup" />
+		<xsd:attribute name="alias" type="xsd:string" use="required" />
+	</xsd:complexType>
+
+	<!-- SiteCommandType -->
+	<xsd:complexType name="SiteCommandType">
+		<xsd:complexContent>
+			<xsd:extension base="types:XPathEnabledStringType">
+				<xsd:attribute name="qualifier" type="xsd:string" />
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+</xsd:schema>

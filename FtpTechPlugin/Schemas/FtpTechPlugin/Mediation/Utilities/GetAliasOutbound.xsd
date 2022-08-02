@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema elementFormDefault="qualified" 
+targetNamespace="urn:ceva:eai:bwce:ftptechplugin:mediation:utilities:getaliasoutbound" 
+xmlns:tibex="http://www.tibco.com/bpel/2007/extensions" 
+xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+xmlns:tns="urn:ceva:eai:bwce:ftptechplugin:mediation:utilities:getaliasoutbound"
+xmlns:pref1="urn:ceva:eai:bwce:ftptechplugin:ftprouting" >
+    
+	<xsd:import schemaLocation="../../FTPRouting.xsd" namespace="urn:ceva:eai:bwce:ftptechplugin:ftprouting"></xsd:import>
+	<xsd:element name="Input">
+		<xsd:complexType>
+			<xsd:sequence>
+			    <xsd:element minOccurs="0" name="Input" type="tns:InputType" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Output">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="pref1:OutboundDocRouting"></xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>	
+	<xsd:complexType name="InputType">
+		<xsd:sequence>
+			<xsd:element ref="pref1:OutboundDocRouting"></xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>  
+</xsd:schema>
